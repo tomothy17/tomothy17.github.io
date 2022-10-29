@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1 id="clicks">clicks: 0</h1>
+
+<script>
+  int clicks_num = 0;
+	function func() {
+    	var text = document.getElementById("demo");
+    	if (text.innerHTML == "foo"){
+        	text.innerHTML = "bar";
+        }
+        else {
+        	text.innerHTML = "foo";
+        }
+    clicks_num += 1
+    document.getElementById("clicks").innerHTML = "clicks: "+clicks_num
+    }
+</script>
+<button id="demo" type="button" onclick="func()">foo</button>
+
+</body>
+</html>
+
