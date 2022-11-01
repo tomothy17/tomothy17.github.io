@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body style="font-family:sans-serif;background:linear-gradient(90deg,purple,orange);">
+
+<h1 style="text-align:center;background:linear-gradient(90deg,orange,purple);border:5px solid black;border-radius:10px;">Emergency Website</h1>
+
+<p style="font-size:20px;"><b>What is this?</b></p>
+<p>My main site, <a style="color:black;" href="https://tomothy17.github.io"><b>tomothy17.github.io</b></a> was wrongfully seized by the government.<br>I managed to get this site online and if you are reading this they have not found it yet.</p>
+
+<br>
+
+<p style="font-size:20px;"><b>Why was your site seized?</b></p>
+<p>While no legal infringement information has yet been provided, it is safe to assume that the <br><em>Username and Password</em> section could have been mistaken as some sort of fraudulent scam.</p>
+
+<br>
+
+<button style="width:100%;height:50px;border-radius:10px;font-size:25px;border:5px solid black;" id="test">Click Me</button>
+
+<script>
+
+const test = document.getElementById("test")
+
+test.onclick = function() {
+	if (test.innerHTML === "Ourple") {
+    	test.innerHTML = "Orange";
+        test.style.backgroundColor = "orange";
+    } else {
+    	test.innerHTML = "Ourple";
+        test.style.backgroundColor = "purple";
+    }
+};
+
+</script>
+
+</body>
+</html>
