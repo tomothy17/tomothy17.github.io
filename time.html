@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Time</title>
+</head>
+<body style="font-family:sans-serif;background-color:black;color:white;font-size:20px;">
+
+<p id="demo">error<p>
+
+<script>
+const d = new Date();
+update = function() {
+    document.getElementById("demo").innerHTML = d.getHours()+":"+d.getMinutes()+":"+d.getSeconds()+" - reload page to update"
+}
+
+update()
+</script>
+
+</body>
+</html>
