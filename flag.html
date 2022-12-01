@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code2Flag</title>
+</head>
+<body style="background-color:black">
+
+<img id="image" style="border-radius:20px" src="https://flagcdn.com/w2560/ua.png" width="240px">
+<br>
+<input id="code" placeholder="Enter 2-letter country code" style="width:160px">
+<button onclick="change()" style="width:80px">Change</button>
+<br>
+<p style="color:white">See a full list of country codes <a href="https://www.iban.com/country-codes" style="color:white">here</a></p>
+
+<script>
+
+const code = document.getElementById("code")
+const image = document.getElementById("image")
+
+function change() {
+    image.src = "https://flagcdn.com/w2560/"+code.value+".png"
+}
+
+</script>
+
+</body>
+</html>
