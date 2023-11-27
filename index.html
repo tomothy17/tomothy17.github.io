@@ -1,1 +1,95 @@
-breh?
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo</title>
+        <style>
+            body{
+                font-family: sans-serif;
+            }
+
+            header{
+                background-color: burlywood;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
+            }
+
+            .logo{
+                align-content: center;
+                padding: 10px;
+                font-family: serif;
+                font-size: 40px;
+                background: linear-gradient(to top right, #f00a9b,#1269db);
+                -webkit-background-clip: text;
+                color: transparent;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .tagline{
+                padding: 20px;
+                font-size: 20px;
+                color: white;
+                text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+                transform: rotate(-5deg);
+            }
+
+            .ban-msg{
+                border: 2px solid red;
+                padding: 10px;
+                background-color: rgba(255,0,0,0.25);
+                width: fit-content;
+
+                color: red;
+                font-family: sans-serif;
+                text-align: center;
+                font-size: 18px;
+            }
+        </style>
+    </head>
+    <header>
+        <p class="logo">ChatterBox</p>
+        <p class="tagline">Unbox the fun!</p>
+    </header>
+
+    <body style="background-color:blanchedalmond;">
+        <p class="ban-msg">
+            <b>Your account has been banned</b><br>
+            This action is permanent and cannot be appealed<br>
+            For more information, see our <a style="color: darkred;" href="">Terms of Service</a>.
+        </p>
+        
+        <fieldset>
+            <input id="user" type="text" placeholder="Choose a Name">
+            <button onclick="checkLogin()">Log in</button>
+            <p id="login-result" style="display: none;">Error</p>
+        </fieldset>
+    </body>
+
+    <script>
+        document.addEventListener("visibilitychange", function () {
+            if (document.hidden) {
+                document.title = '(!) Demo';
+            } else {
+                document.title = 'Demo'
+            }
+        });
+
+        function checkLogin() {
+            var result = document.getElementById("login-result");
+            var user = document.getElementById("user").value;
+            var pass = document.getElementById("pass").value;
+
+            result.style.display = "block";
+
+            if (user === "" || pass === "") {
+                result.style.color = "red";
+                result.innerHTML = "Invalid";
+            } else {
+                result.style.color = "green";
+                result.innerHTML = "Success";
+            }
+        }
+    </script>
+</html>
