@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        body {
+            font-family: monospace;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+        }
+
+        header {
+            text-align: center;
+        }
+
+        .logo {
+            display: inline-block;
+            padding: 0px;
+            font-family: monospace;
+            font-size: 50px;
+            background: linear-gradient(to top, rgb(55,55,55),rgb(155,155,155));
+            -webkit-background-clip: text;
+            color: transparent;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            margin: 0%;
+            color: rgb(55,55,55);
+        }
+
+        a {
+            color: rgb(155,155,155);
+        }
+
+        a:visited {
+            color: rgb(155,155,155);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="logo" href="https://tomothy17.com">tomothy17</a>
+        <p>by <a href="https://instagram.com/tomothy17">@tomothy17</a> on ig</p>
+    </header>
+</body>
+</html>
