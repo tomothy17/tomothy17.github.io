@@ -1,1 +1,38 @@
-hi
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Index</title>
+</head>
+<body>
+
+    <h1>Website Index</h1>
+
+    <ul id="pageList"></ul>
+
+    <script>
+        // List of page URLs
+        const pageUrls = [
+            '/page1.html',
+            '/page2.html',
+            '/page3.html'
+            // Add more page URLs as needed
+        ];
+
+        // Get the <ul> element
+        const pageList = document.getElementById('pageList');
+
+        // Loop through the page URLs and create list items
+        pageUrls.forEach(url => {
+            const listItem = document.createElement('li');
+            const link = document.createElement('a');
+            link.href = url;
+            link.textContent = url.substring(1); // Display the page name without the leading '/'
+            listItem.appendChild(link);
+            pageList.appendChild(listItem);
+        });
+    </script>
+
+</body>
+</html>
