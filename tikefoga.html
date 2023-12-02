@@ -67,8 +67,16 @@
     </body>
 
     <script>
+        function generateRandomEvenNumber() {
+          const base = Math.floor(Math.random() * 9) + 1;
+          const factor = [1, 10, 100][Math.floor(Math.random() * 3)];
+          const power = 2 * Math.floor(Math.random() * 6) + 1; // Ensures an even power
+        
+          return base * factor * 10 ** power;
+        }
+        
         var interval = 1;
-        var cur = Math.floor(Math.random() * (1000000000000 - 1000 + 1) + 1000);
+        var cur = generateRandomEvenNumber();
         
         function fln(number) {
             if (number >= 1e12) {
