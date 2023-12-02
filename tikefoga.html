@@ -1,1 +1,113 @@
-upcoming project
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TikeFoga</title>
+        <style>
+            body{
+                background:linear-gradient(to bottom, white, grey);
+                height: 100vh
+            }
+
+            .logo{
+                font-family: serif;
+                font-size: 60px;
+                color: rgb(55,55,100);
+                text-align: center;
+                margin: 0px;
+            }
+
+            .tagline{
+                font-family: serif;
+                font-size: 24px;
+                text-align: center;
+                margin: 10px;
+            }
+
+            .gold{
+                color: orange;
+                font-weight: bold;
+            }
+
+            .info{
+                font-family: sans-serif;
+                font-size: 30px;
+                text-align: center;
+                color: white;
+                
+                background-color: black;
+                padding: 20px;
+                border-radius: 10px;
+                border: 5px solid white;
+            }
+            
+            .imag{
+                max-width: 200px;
+                max-height: 50px;
+                padding: 10px;
+                filter: invert();
+                filter: brightness(0);
+                position: relative;
+                top: 12px;
+            }
+
+            h1 {
+                font-size: 18px;
+                font-family: sans-serif;
+                text-align: center;
+                font-weight: lighter;
+                margin-top: 62vh;
+            }
+        </style>
+    </head>
+    <body> 
+        <p class="logo">TikeFoga</p>
+        <p class="tagline"><b class="gold">#1</b> defence company in the World</p>
+        <p class="info">Current market cap: <span id="mkp">30000000000000</span> <span id="indicator"></span></p>
+        <h1>Funded by<span><img class="imag" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Lockheed_Martin_logo.svg"></span></h1>
+    </body>
+
+    <script>
+        var interval = 1;
+        var cur = parseFloat(document.getElementById('mkp').innerText);
+
+        function fln(number) {
+            if (number >= 1e12) {
+                return (number / 1e12).toFixed(2) + ' trillion';
+            } else if (number >= 1e9) {
+                return (number / 1e9).toFixed(2) + ' billion';
+            } else if (number >= 1e6) {
+                return (number / 1e6).toFixed(2) + ' million';
+            } else if (number >= 1e3) {
+                return (number / 1e3).toFixed(2) + ' thousand';
+            } else {
+                return number.toString();
+            }
+        }
+        
+        function update() {
+            var displaycur = document.getElementById('mkp');
+            var indic = document.getElementById('indicator');
+            var newc = cur + ((Math.random()*2)-1)*1e12;
+
+            if (newc > cur) {
+                indic.innerText = '↑';
+                indic.style.color = 'lime';
+                displaycur.style.color = 'lime';
+            } else {
+                indic.innerText = '↓';
+                indic.style.color = 'red';
+                displaycur.style.color = 'red';
+            }
+
+            cur = newc;
+
+            displaycur.innerText = '$'+fln(cur);
+
+            interval = Math.random();
+        }
+
+        update()
+
+        setInterval(update, interval*10000)
+    </script>
+</html>
