@@ -62,14 +62,14 @@
     <body> 
         <p class="logo">TikeFoga</p>
         <p class="tagline"><b class="gold">#1</b> defence company in the World</p>
-        <p class="info">Current market cap: <span id="mkp">30000000000000</span> <span id="indicator"></span></p>
+        <p class="info">Current market cap: <span id="mkp">0</span> <span id="indicator"></span></p>
         <h1>Funded by<span><img class="imag" src="https://upload.wikimedia.org/wikipedia/commons/9/99/Lockheed_Martin_logo.svg"></span></h1>
     </body>
 
     <script>
         var interval = 1;
-        var cur = parseFloat(document.getElementById('mkp').innerText);
-
+        var cur = Math.floor(Math.random() * (100000000000000 - 1000 + 1) + 1000);
+        
         function fln(number) {
             if (number >= 1e12) {
                 return (number / 1e12).toFixed(2) + ' trillion';
