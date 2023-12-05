@@ -4,7 +4,7 @@
         <title>Lore</title>        
         <style>
             body{
-                background-color:peru;
+                background: linear-gradient(to bottom, #ffffff, #cacaca);
             }
 
             .title{
@@ -18,15 +18,17 @@
             }
 
             .hint{
-                width: 100%;
+                width: fit-content;
                 font-family: monospace;
-                background-color:brown;
+                background-color:red;
                 font-weight: bold;
-                font-size: 16px;
+                font-size: 14px;
                 padding: 5px;
+                border-radius: 5px;
             }
 
             .content-title{
+                z-index: 1;
                 font-weight: bold;
                 font-family: sans-serif;
                 font-size: 24px;
@@ -57,33 +59,62 @@
             hr{
                 border: 1px solid black;
             }
+
+            .bg-image{
+                z-index: -1;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-size: cover;
+                opacity: 0.5;
+            }
+
+            .container{
+                z-index: 1;
+                width:auto;
+                height:auto;
+                position:relative;
+                border: 2px solid black;
+                padding: 20px;
+                border-radius: 10px;
+            }
         </style>
     </head>
 
     <body>
         <p class="title">Lore</p>
-        <p class="hint">IMPORTANT: This may not be entirely accurate as it has not yet been approved by <a href="https://www.youtube.com/@smolboiramen">@smolboiramen</a>.</p>
-
-        <div id="pennsylvania">
+        <center>
+            <p class="hint">IMPORTANT: This may not be entirely accurate as it has not yet been approved by <a href="https://www.youtube.com/@smolboiramen">@smolboiramen</a>.</p>
+        </center>
+        
+        <div id="pennsylvania" class="container">
             <p class="content-title">Pennsylvania</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/pennsylvania-bg.png); background-position-y: 50%"></div>
             <p class="content">
                 Pennsylvania is overrun with slums and crime.
             </p>
         </div>
 
-        <hr>
+        <br>
 
-        <div id="count-dracula">
+        <div id="count-dracula" class="container">
             <p class="content-title">Count Dracula</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/count-dracula-bg.png); background-position-y: 22%"></div>
             <p class="content">
-                (Information needed)
+                A miner in Deep <a href="#pennsylvania">Pennsylvania</a> once
+                stumbled upon a strange tomb, when he opened it he turned into
+                a vampire. He is widely feared in the <a href="#pennsylvania">Pennsylvanian</a> slums
+                and is incredibly dangerous.
             </p>
         </div>
 
-        <hr>
+        <br>
 
-        <div id="bomboclats">
+        <div id="bomboclats" class="container">
             <p class="content-title">Bomboclats</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/bomboclats-bg.png); background-position-y: 35%"></div>
             <p class="content">
                 Yonks ago, a group of <a href="#pennsylvania">Pennsylvanian</a> slum dwellers
                 who had names themselves the Bomboclats, commonly refered to as
@@ -97,10 +128,11 @@
             </p>
         </div>
 
-        <hr>
+        <br>
         
-        <div id="maple-cartel">
+        <div id="maple-cartel" class="container">
             <p class="content-title">Maple Cartel</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/maple-cartel-bg.png); background-position-y: 50%"></div>
             <p class="content">
                 In 1989, a small group of <a href="#bomboclats">Bomboclat</a> outcasts decided they were tired of the war against
                 <a href="#count-dracula">Count Dracula</a> so they fled north into <a href="#canada">Canada</a>. In Canada, they quickly stumbled upon
@@ -117,10 +149,11 @@
             </p>
         </div>
 
-        <hr>
+        <br>
 
-        <div id="canada">
+        <div id="canada" class="container">
             <p class="content-title">Canada</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/canada-bg.png); background-position-y: 60%"></div>
             <p class="content">
                 Canadians can only speak using Canadian stereotypes as words, such as
                 'ice hockey' and 'poutine'.
@@ -143,10 +176,11 @@
             </p>
         </div>
 
-        <hr>
+        <br>
 
-        <div id="bao">
+        <div id="bao" class="container">
             <p class="content-title">Bao</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/bao-bg.png); background-position-y: 40%"></div>
             <p class="content">
                 Bao is the brother of <a href="#bei">Bei</a> and is a dangerous criminal who molests and eats people.
                 He is insanely fat and is to believed to have molested and eaten over 2,000,000,000 
@@ -158,20 +192,22 @@
             </p>
         </div>
 
-        <hr>
+        <br>
 
-        <div id="bei">
+        <div id="bei" class="container">
             <p class="content-title">Bei</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/bei-bg.png); background-position-y: 25%"></div>
             <p class="content">
                 Bei is the sister of <a href="#bao">Bao</a> and is an adult model. Although her and Bao
                 are twins, she is three times younger as she ages 3x slower due to genetic mutation.
             </p>
         </div>
 
-        <hr>
+       <br>
 
-        <div id="west-korea">
+        <div id="west-korea" class="container">
             <p class="content-title">West Korea</p><br>
+            <div class="bg-image" style="background-image: url(/assets/ai/west-korea-bg.png); background-position-y: 70%"></div>
             <p class="content">
                 In 1984, West Korea was founded. It was an incredibly advanced underwater
                 country protected by a dome. The dome is powered by 100 small purple tubes
