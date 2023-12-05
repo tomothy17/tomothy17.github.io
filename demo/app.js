@@ -1,14 +1,23 @@
 let auth2;
+let currentUser;
+
+function authenticateGoogle() {
+    gapi.load('auth2', function() {
+        gapi.auth2.init().then(function() {
+            auth2 = gapi.auth2.getAuthInstance();
+            auth2.signIn().then(onSignIn);
+        });
+    });
+}
 
 function onSignIn(googleUser) {
-    const profile = googleUser.getBasicProfile();
-    console.log('ID: ' + profile.getId());
-    console.log('Name: ' + profile.getName());
-    console.log('Email: ' + profile.getEmail());
+    currentUser = googleUser.getBasicProfile();
+    console.log('ID: ' + currentUser.getId());
+    console.log('Name: ' + currentUser.getName());
+    console.log('Email: ' + currentUser.getEmail());
 }
 
 function signOut() {
-    const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
         console.log('User signed out.');
     });
@@ -16,7 +25,11 @@ function signOut() {
 
 function sendMessage() {
     const message = $('#message-input').val();
-    $('#chat-messages').append(`<p>${message}</p>`);
-    // You can send the message to the server and save it in the database here
+    const firstName = currentUser.getGivenName();
+    $('#chat-messages').append(`<p><strong>${firstName}:</strong> ${message}</p>`);
+    
+    // You can send the message along with the user's information to the server and save it in the database here
+    $.post("save_message.php", { firstName: firstName, message: message });
+    
     $('#message-input').val(''); // Clear the input field
 }
