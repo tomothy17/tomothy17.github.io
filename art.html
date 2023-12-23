@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASCII Art Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        #asciiContainer {
+            display: inline-block;
+            white-space: pre;
+            font-family: monospace;
+            line-height: 13px;
+            margin-top: 20px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            margin-top: 20px;
+            width: 80%;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+<div id="asciiContainer"></div>
+<input type="range" id="canvasSlider" min="2" max="60" step="1" value="50" oninput="updateCanvasSize(this.value)">
+<button onclick="generateASCII()">Generate ASCII Art</button>
+<footer>The original generator was created in Python.<br>
+<a href='https://chat.openai.com'>ChatGPT</a> was used to convert it to JavaScript for web usage.</footer>
+
+<script>
+function generateASCII() {
+    const container = document.getElementById('asciiContainer');
+    container.innerHTML = '';
+
+    const canvasx = parseInt(document.getElementById('canvasSlider').value);
+    const canvasy = canvasx * 0.6;
+
+    const chars = [' ', '░', '▒', '▓', '█'];
+
+    let log = [];
+
+    let depth = Math.floor(Math.random() * chars.length);
+
+    for (let reny = 0; reny < canvasy; reny++) {
+        for (let renx = 0; renx < canvasx; renx++) {
+            if (log.length > canvasx) {
+                depth = Math.floor((depth + log[log.length - canvasx]) / 2) + Math.floor(Math.random() * 3) - 1;
+            } else {
+                depth += Math.floor(Math.random() * 3) - 1;
+            }
+
+            if (depth > chars.length - 1) depth = chars.length - 1;
+            if (depth < 0) depth = 0;
+
+            log.push(depth);
+            container.innerHTML += chars[depth];
+        }
+        container.innerHTML += '<br>';
+    }
+}
+
+function updateCanvasSize(value) {
+    document.getElementById('canvasSlider').value = value;
+}
+</script>
+
+</body>
+</html>
