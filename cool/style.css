@@ -1,0 +1,11 @@
+#div{
+    font-size: 8px;
+    line-height: 9px;
+    width: fit-content;
+    height: fit-content;
+    font-family: sans-serif;
+}
+
+body{
+    font-family: monospace;
+}
