@@ -97,10 +97,10 @@ function getDelta(start,end){
     })
 })*/
 
-let log = initialRender(20,12);
+let log = initialRender(15,9);
 
 setInterval(() => {
-    log = render(log,20,12);
+    log = render(log,15,9);
     updateInfo(getDelta(dstart,dend));
 }, 100);
 
