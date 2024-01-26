@@ -54,6 +54,10 @@ function updateInfo() {
     if (!gameOver && ((Xturf.length + Oturf.length) == 9)) {
         info.innerText = "It's a tie!";
         document.body.style.backgroundColor = 'grey';
+        stopGame();
+    }
+    if (gameOver) {
+        info.innerHTML += '<br><a style="font-size: 14px" href="">Play again</a>'
     }
 }
 
