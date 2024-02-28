@@ -1,0 +1,35 @@
+#input {
+    width: 80%;
+    height: 20px;
+    margin: auto;
+    display: block;
+    outline: none;
+    border: 2px solid black;
+}
+
+#output {
+    width: 80%;
+    height: 20px;
+    margin: auto;
+    display: block;
+}
+
+img{position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: -99999;}
+
+div {
+    margin: auto;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+*{font-family: sans-serif; font-size: 16px;}
