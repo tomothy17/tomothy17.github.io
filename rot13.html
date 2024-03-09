@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code maker</title>
+<style>
+textarea{
+	width: calc(50% - 20px);
+    height: 100px
+}
+
+*{font-family:monospace}
+</style>
+</head>
+<body>
+
+<textarea placeholder='hello' id='in'></textarea>
+<textarea placeholder='uryyb' id='out'></textarea>
+
+<script>
+
+const innp = document.getElementById('in');
+const outp = document.getElementById('out');
+
+const abcxyz = 'abcdefghijklmnopqrstuvwxyz';
+
+function encode() {
+	let raw = innp.value;
+    let out = '';
+    for (let i = 0; i <= raw.length-1; i++) {
+        let idx = abcxyz.indexOf(raw[i]);
+        if (idx === -1) {
+            out += raw[i];
+        } else {
+            let ridx = (idx + 13) % abcxyz.length;
+            out += abcxyz[ridx];
+        }
+    }
+    outp.value = out;
+}
+
+function decode() {
+	let raw = outp.value;
+    let out = '';
+    for (let i = 0; i <= raw.length-1; i++) {
+        let idx = abcxyz.indexOf(raw[i]);
+        if (idx === -1) {
+            out += raw[i];
+        } else {
+            let ridx = (idx + 13) % abcxyz.length;
+            out += abcxyz[ridx];
+        }
+    }
+    innp.value = out;
+}
+
+innp.addEventListener('input',encode);
+outp.addEventListener('input',decode);
+
+</script>
+
+</body>
+</html>
+
