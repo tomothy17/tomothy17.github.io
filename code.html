@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code maker</title>
+<style>
+textarea{
+	width: calc(50% - 20px);
+    height: 100px
+}
+
+#guide{white-space:pre}
+
+*{font-family:monospace}
+</style>
+</head>
+<body>
+
+<textarea placeholder='hi' id='in'></textarea>
+<textarea placeholder='8.5.12.12.15' id='out'></textarea>
+
+<div id='guide'>please reload the page</div>
+
+<script>
+
+const inn = document.getElementById('in');
+const out = document.getElementById('out');
+
+const gui = document.getElementById('guide');
+
+const alphabet = ' abcdefghijklmnopqrstuvwxyz';
+
+function encode() {
+	let raw = inn.value;
+	let code = '';
+	for (let idx = 1; idx <= raw.length; idx++) {
+    	let char = raw[idx-1];
+        
+        if (alphabet.includes(char)) {
+        	code += alphabet.indexOf(char);
+        }
+        
+        if (idx <raw.length) {
+        	code += '.';
+        }
+    }
+    out.value = code;
+}
+
+function decode() {
+	let code = out.value.split('.');
+    let raw = '';
+    for (let idx = 1; idx <= code.length; idx++) {
+    	let num = code[idx-1]
+        
+        if (alphabet[num]) {
+        	raw += alphabet[num];
+        }
+        
+        inn.value = raw;
+    }
+}
+
+gui.innerHTML = "''  - .<br/>";
+for (let idx = 1; idx <= alphabet.length; idx++) {
+	gui.innerHTML += `'${alphabet[idx-1]}\' - ${idx-1}\<br/>`
+}
+
+inn.addEventListener('input',encode);
+out.addEventListener('input',decode);
+
+</script>
+
+</body>
+</html>
+
