@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bånklob Translator</title>
+<style>
+
+textarea{resize:none;}
+
+body{display:flex;background-color:black;overflow:hidden}
+
+.io{
+	padding: 2px;
+    font-family: monospace;
+    font-size: 14px;
+    height: calc(100vh - 20px);
+    color: white;
+    white-space: pre-wrap;
+    overflow-wrap: break-word
+}
+
+#input{
+	width: calc(50%);
+    border: 1px solid white;
+    outline: none;
+    margin-inline-end: 5px;
+    background-color: black
+}
+
+#output{
+	width: calc(50%);
+    border: 1px dashed white;
+    margin-inline-start: 5px
+}
+
+</style>
+</head>
+<body>
+
+<textarea class='io' id='input'></textarea>
+<div class='io' id='output'></div>
+
+<script>
+
+const i = document.getElementById('input');
+const o = document.getElementById('output');
+
+const replacements = [
+	{ from: 'ery', to: 'rey' },
+	{ from: 'y', to: 'iye' },
+    { from: 'll', to: 'y' },
+    { from: 'th', to: 'f' },
+    { from: 'eau', to: 'oo' },
+    { from: 'ght', to: 't' },
+    { from: 'tch', to: 'ch' },
+    { from: 'ck', to: 'kh' },
+    { from: 'u', to: 'uh' },
+    { from: 'ove', to: 'uv' },
+    { from: 'age', to: 'ij' },
+    { from: 'ss', to: 'z' },
+    { from: 'the', to: 'du' },
+    { from: 'ity', to: 'ti' },
+    { from: 'ew', to: 'yu' },
+    { from: 'er', to: 'ur' },
+    { from: 'tion', to: 'shun' },
+    { from: 'ent', to: 'int' },
+    { from: 'ee', to: 'i' },
+    { from: 'ism', to: 'izzem' },
+    { from: 'au', to: 'or' },
+    { from: 'ave', to: 'ahv' },
+    { from: 'dg', to: 'j' },
+    { from: 'ou', to: 'oo' },
+    { from: 'kn', to: 'n' },
+    { from: 'ow', to: 'oh' },
+    { from: 'ont', to: 'ant' },
+    { from: 'ate', to: 'eit' },
+    { from: 'ont', to: 'ant' },
+    { from: 'i', to: 'aui' },
+];
+
+function replace(text) {
+    replacements.forEach(replacement => {
+        const regex = new RegExp(replacement.from, 'gi');
+        text = text.replace(regex, replacement.to);
+    });
+    return text;
+}
+
+function update() {
+	o.textContent = replace(i.value);
+}
+
+i.addEventListener('input',update);
+
+</script>
+
+</body>
+</html>
+
