@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Random</title>
+<style>
+p{
+	width:100%;
+    height:auto;
+    word-break:break-all
+}
+</style>
+</head>
+<body>
+
+<input id='len' type='range'
+min='1' max='10000' value='100' style='width:100%'>
+<label id='label' for='len'></label>
+<button id='gen'>Change</button>
+<p id='text'></p>
+
+<script>
+
+const text = document.getElementById('text');
+const label = document.getElementById('label');
+const len = document.getElementById('len');
+const gen = document.getElementById('gen');
+
+const abc = 'abcdefghijklmnopqrstuvwxyz';
+
+function generate() {
+	let out = '';
+    
+    for (let i = 1; i <= len.value; i++) {
+    	out += abc[Math.floor(Math.random()*abc.length)];
+    }
+    text.innerHTML = out;
+}
+
+function updateLabel() {
+	label.innerHTML = len.value;
+    generate();
+}
+
+generate();
+updateLabel();
+
+gen.addEventListener('click', generate);
+len.addEventListener('input', updateLabel);
+
+</script>
+
+</body>
+</html>
+
