@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+
+#input{
+	width: calc(100% - 5px);
+    height: 20vw
+}
+
+#gen{}
+
+#output{
+	width: 100%;
+    text-align:center;
+    font-size: 50px
+}
+
+</style>
+</head>
+<body>
+
+<textarea id='input'>The quick brown fox jumps over the lazy dog</textarea>
+<button id='gen'>generate</button>
+<input id='speed' type='range' value='25' min='10' max='40'>
+<label id='label' for='speed'>Normal</label>
+<p id='output'>...</p>
+
+<script>
+
+const input = document.getElementById('input');
+const gen = document.getElementById('gen');
+const speed = document.getElementById('speed');
+const label = document.getElementById('label');
+const output = document.getElementById('output');
+
+function generate() {
+	const words = input.value.split(' ');
+    
+    let idx = 0;
+    function displayWord() {
+        output.innerHTML = words[idx];
+        idx++;
+        if (words[idx-1]) {
+        	setTimeout(displayWord, words[idx-1].length*(50-speed.value));
+        } else {
+        	output.innerHTML = '...';
+        }
+    }
+    displayWord()
+}
+
+function updateLabel() {
+	let s = speed.value;
+    if (s == 40) {
+    	label.innerHTML = 'Fastest';
+    } else if (s > 35 && s < 40) {
+    	label.innerHTML = 'Faster';
+    } else if (s > 25 && s < 35) {
+    	label.innerHTML = 'Fast';
+    } else if (s == 25) {
+    	label.innerHTML = 'Normal';
+    } else if (s < 25 && s > 15) {
+    	label.innerHTML = 'Slow';
+    } else if (s < 15 && s > 10) {
+    	label.innerHTML = 'Slower';
+    } else if (s == 10) {
+    	label.innerHTML = 'Slowest';
+    }
+}
+
+gen.addEventListener('click', generate);
+speed.addEventListener('input', updateLabel);
+
+</script>
+</body>
+</html>
+
