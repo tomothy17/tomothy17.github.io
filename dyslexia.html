@@ -1,20 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Dyslexia Helper</title>
 <style>
 
-#input{
-	width: calc(100% - 5px);
-    height: 20vw
+body{
+	margin: 0;
+    padding: 0px;
+    background-color: rgba(25,25,25);
+    overflow: hidden
 }
 
-#gen{}
+#input{
+	width: 96vw;
+    height: 40vw;
+    resize: vertical;
+    margin: 1vw;
+    background-color: rgba(55,55,55);
+    color: rgb(200,200,200);
+    font-family: sans-serif;
+    font-size: 3vw;
+    border: none;
+    outline: none;
+    padding: 1vw;
+    border-radius: 2vw
+}
+
+#gen{
+	width: 20vw;
+    height: 8vw;
+	background: linear-gradient(90deg, rgb(255,0,255), rgb(0,0,255), rgb(255,0,255));
+    background-repeat: repeat;
+    background-size: 200% 100%;
+    border: none;
+    outline: none;
+    transition: background-position 0.3s ease;
+    font-size: 3vw;
+    font-weight: bold;
+    color: white;
+    border-radius: 2vw;
+    margin-inline: 40vw;
+}
+
+#gen:hover{
+	background-position: 20vw;
+    cursor: pointer
+}
+
+#gen:active{
+	background-position: 40vw
+}
 
 #output{
 	width: 100%;
-    text-align:center;
-    font-size: 50px
+    text-align: center;
+    font-size: 10vw;
+    color: white;
+    margin-block: 2vw
 }
 
 </style>
@@ -22,9 +64,9 @@
 <body>
 
 <textarea id='input'>The quick brown fox jumps over the lazy dog</textarea>
-<button id='gen'>generate</button>
-<input id='speed' type='range' value='25' min='10' max='40'>
-<label id='label' for='speed'>Normal</label>
+<button id='gen'>Generate</button>
+<!--<input id='speed' type='range' value='25' min='10' max='40'>
+<label id='label' for='speed'>Normal</label>-->
 <p id='output'>...</p>
 
 <script>
@@ -43,7 +85,7 @@ function generate() {
         output.innerHTML = words[idx];
         idx++;
         if (words[idx-1]) {
-        	setTimeout(displayWord, words[idx-1].length*(50-speed.value));
+        	setTimeout(displayWord, words[idx-1].length*(50-25));//speed.value));
         } else {
         	output.innerHTML = '...';
         }
@@ -76,4 +118,3 @@ speed.addEventListener('input', updateLabel);
 </script>
 </body>
 </html>
-
