@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Time</title>
+<style>
+
+#time{
+	font-size: 10vw;
+    text-align: center;
+   margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  font-family: monospace;
+  color:white
+}
+
+body{background-color:black}
+
+</style>
+</head>
+<body>
+
+<div id='time'>...</div>
+
+<script>
+
+const time = document.getElementById('time');
+
+function update() {
+	time.innerHTML = Math.floor(Date.now()/1000);
+    setInterval(update, 1000);
+}
+
+update();
+
+</script>
+
+</body>
+</html>
