@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Freakygram</title>
+<style>
+
+body{
+	font-family: sans-serif;
+    background-color: rgb(250,250,250);
+    user-select: none
+}
+
+.f{
+	font-family: 'papyrus'
+}
+
+.logo{
+	font-size: 10vw;
+    width: 20vw;
+    margin: 0;
+    background: -webkit-linear-gradient(315deg,rgb(81,91,212), rgb(129,52,175), rgb(221,42,123), rgb(245,133,41), rgb(254,218,119));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1{text-align: center;
+font-size: 5vw;
+margin: 0;
+font-weight: normal}
+
+.cred{
+	outline: none;
+    background-color: rgb(255,255,255);
+    color: rgb(155,155,155);
+    border: 1px solid rgb(155,155,155);
+    width: 50vw;
+    display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+    margin-block: 1vw;
+    height: 3vw;
+    border-radius: 1vw;
+    font-size: 2.5vw;
+    padding: 0.5vw
+}
+
+.cred::placeholder{
+	color: rgb(200,200,200);
+}
+
+a{
+	color: rgb(0,155,255);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 3vw;
+    float:right;
+    margin-right: 22.5vw;
+    display: block;
+}
+
+#login {
+	background-color: rgb(0,155,255);
+    border: none;
+    width: 50vw;
+    height: 6vw;
+    border-radius: 2vw;
+    color: white;
+    font-weight: bold;
+    transition: 0.2s ease;
+    display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+    font-size: 3vw
+}
+
+#login:hover{
+	background-color: rgb(0,100,200);
+    cursor: pointer
+}
+
+.note{
+	color: rgb(155,155,155);
+    font-style: italic;
+    font-weight: 200;
+    width: 80%;
+    display: block;
+  	margin-left: auto;
+ 	margin-right: auto;
+    font-size: 3vw;
+    text-align: center
+}
+
+@media only screen and (min-width: 600px) {
+    body {
+        transform: scale(0.5); /* Adjust the scaling factor as needed */
+        transform-origin: center center;
+    }
+}
+
+
+</style>
+</head>
+<body>
+
+<center><div class='logo'>&#x1f346;</div></center>
+<h1><span class='f'>freaky</span>gram</h1>
+
+<input class='cred' id='user' type='text' placeholder='Phone number, username or email address'>
+<input class='cred' id='pass' type='password' placeholder='Password'>
+<!--<a href='https://google.com/search?q=why+am+i+so+forgetful'>Forgot password?</a>
+<br /><br />--><br />
+<button id='login'>Log in</button>
+<br /><br /><br /><br />
+<p class='note'>This page is still in beta, so you need the admin login credentials to access the site's content.</p>
+
+<script>
+
+const user = document.getElementById('user');
+const pass = document.getElementById('pass');
+const button = document.getElementById('login');
+
+function login(){
+	alert(`Username '${user.value}' not found
+Password '${pass.value}' invalid`);
+}
+
+button.addEventListener('click',login);
+
+</script>
+</body>
+</html>
+
