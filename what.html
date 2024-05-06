@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>what</title>
+<style>
+    body {
+        margin: 0;
+        overflow: hidden;
+        background-color: white;
+        font-family: monospace;
+    }
+    #container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    canvas {
+        background-color: white;
+        border: 1px solid #333;
+        width: 90vw;
+        height: 70vh;
+        margin-bottom: 20px;
+    }
+    .slider-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 90vw;
+    }
+    .slider-container label {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+    .slider {
+        width: 90%;
+        -webkit-appearance: none;
+        appearance: none;
+        height: 20px;
+        border-radius: 0;
+        background: #000;
+        outline: none;
+        
+        margin-bottom: 10px;
+        border: 2px solid rgb(0,0,0); /* Adjusted border thickness */
+    }
+    .slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        cursor: pointer;
+        border: 1px solid #000;
+    }
+    .slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        cursor: pointer;
+        border: 1px solid #000;
+    }
+</style>
+</head>
+<body>
+
+<div id="container">
+    <canvas id="canvas"></canvas>
+    <div class="slider-container">
+        <label for="speedSlider">speed</label>
+        <input type="range" id="speedSlider" class="slider" min="1" max="20" value="10">
+        <label for="ballNumberSlider">amount</label>
+        <input type="range" id="ballNumberSlider" class="slider" min="1" max="50" value="10">
+    </div>
+</div>
+
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth * 0.9;
+    canvas.height = window.innerHeight * 0.7;
+
+    const balls = [];
+    let numBalls = 10;
+    let speed = 10;
+
+    const speedSlider = document.getElementById('speedSlider');
+    const ballNumberSlider = document.getElementById('ballNumberSlider');
+
+    speedSlider.addEventListener('input', function() {
+        speed = parseInt(speedSlider.value);
+        updateSpeed();
+    });
+
+    ballNumberSlider.addEventListener('input', function() {
+        numBalls = parseInt(ballNumberSlider.value);
+        updateBallNumber();
+    });
+
+    function updateSpeed() {
+        balls.forEach(ball => {
+            ball.dx = (Math.random() - 0.5) * speed;
+            ball.dy = (Math.random() - 0.5) * speed;
+        });
+    }
+
+    function updateBallNumber() {
+        if (numBalls > balls.length) {
+            for (let i = balls.length; i < numBalls; i++) {
+                const radius = 0.5;
+                const x = Math.random() * (canvas.width - radius * 2) + radius;
+                const y = Math.random() * (canvas.height - radius * 2) + radius;
+                const dx = (Math.random() - 0.5) * speed;
+                const dy = (Math.random() - 0.5) * speed;
+                const color = 'rgb(0,0,0)';
+                balls.push(new Ball(x, y, dx, dy, radius, color));
+            }
+        } else if (numBalls < balls.length) {
+            balls.splice(numBalls);
+        }
+    }
+
+    class Ball {
+        constructor(x, y, dx, dy, radius, color) {
+            this.x = x;
+            this.y = y;
+            this.dx = dx;
+            this.dy = dy;
+            this.radius = radius;
+            this.color = color;
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        update() {
+            if (this.x + this.radius > canvas.width || this.x - this.radius < 0) {
+                this.dx = -this.dx;
+            }
+
+            if (this.y + this.radius > canvas.height || this.y - this.radius < 0) {
+                this.dy = -this.dy;
+            }
+
+            this.x += this.dx;
+            this.y += this.dy;
+        }
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < balls.length; i++) {
+            for (let j = i + 1; j < balls.length; j++) {
+                const dx = balls[i].x - balls[j].x;
+                const dy = balls[i].y - balls[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < 10000) {
+                    ctx.beginPath();
+                    ctx.moveTo(balls[i].x, balls[i].y);
+                    ctx.lineTo(balls[j].x, balls[j].y);
+                    ctx.strokeStyle = 'rgb(0, 0, 0)';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                    ctx.closePath();
+                }
+            }
+        }
+
+        balls.forEach(ball => {
+            ball.draw();
+        });
+    }
+
+    function update() {
+        for (let i = 0; i < balls.length; i++) {
+            for (let j = i + 1; j < balls.length; j++) {
+                const dx = balls[j].x - balls[i].x;
+                const dy = balls[j].y - balls[i].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                if (distance < balls[i].radius + balls[j].radius) {
+                    const tempDx = balls[i].dx;
+                    const tempDy = balls[i].dy;
+                    balls[i].dx = balls[j].dx;
+                    balls[i].dy = balls[j].dy;
+                    balls[j].dx = tempDx;
+                    balls[j].dy = tempDy;
+                }
+            }
+        }
+
+        balls.forEach(ball => {
+            ball.update();
+        });
+    }
+
+    function animate() {
+        requestAnimationFrame(animate);
+        draw();
+        update();
+    }
+
+	updateBallNumber();
+    animate();
+
+    window.addEventListener('resize', function() {
+        canvas.width = window.innerWidth * 0.9;
+        canvas.height = window.innerHeight * 0.7;
+    });
+</script>
+
+</body>
+</html>
