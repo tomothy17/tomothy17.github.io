@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Word Creator</title>
+</head>
+<body>
+
+<p></p>
+<button>generate</button>
+
+<script>
+
+const p = ' im in un auto anti hyper inter intra mis bi sub re ex dis macro micro poly extra mono multi neo proto hypo peri trans circum radio mega ultra super ';
+
+const a = ' geo aero hydr tele chron bio photo derm zoo cycl hemo path morpho pod neur pneum chrom gen therm cyt aqua teleo tit train mix my';
+
+const s = ' able est or ator acate er nd ise ity ous ious ness ful tion sion cion ed ly ment ty ology phobia ic ical ism ance ify less ward ian scape y i mn ez esness ulum scopic oid ium nium';
+
+//
+
+const pre = p.split(' ');
+const aff = a.split(' ');
+const suf = s.split(' ');
+
+function rand(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+}
+
+console.log(`There are currently ${p.length*a.length*s.length} different possible word combinations!\n`)
+
+function generate() {
+	let word = rand(pre)+rand(aff)+rand(suf);
+    word = word.toLowerCase().charAt(0).toUpperCase() + word.slice(1);
+    document.querySelector('p').innerHTML = word;
+}
+
+generate();
+document.querySelector('button').addEventListener('click',generate);
+
+</script>
+
+</body>
+</html>
+
