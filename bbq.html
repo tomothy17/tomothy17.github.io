@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Breaking Bad Quotes</title>
+<style>
+
+body{
+	background-color: black
+}
+
+div{
+	font-family: serif;
+    color: white;
+    width: 90%;
+    padding: 5%
+}
+
+#q{
+	font-size: 40px;
+}
+
+#a{
+	font-size: 20px;
+    float: right;
+    padding: 2.5%
+}
+
+button{
+	outline: none;
+    width: 40vw;
+    height: 8vh;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    border: 0;
+    border-radius: 4vh;
+    font-size: calc(2vw + 2vh);
+    position: fixed;
+    bottom: 2vh;
+    margin:0;
+    left: 30vw;
+    transition: 0.3s ease
+}
+
+button:hover{
+	cursor: pointer;
+	color: white;
+    background-color: black;
+    border: 3px solid white
+}
+
+button:active{
+	cursor: pointer;
+	color: white;
+    background-color: black;
+    border: 6px solid white
+}
+
+</style>
+</head>
+<body>
+
+<div>
+	<span id='q'></span><br/>
+    <span id='a'></span>
+</div>
+
+<button>Reroll</button>
+
+<script>
+
+function inspire() {
+	fetch('https://api.breakingbadquotes.xyz/v1/quotes')
+	.then(response => response.json())
+    .then(data => {
+    	const quote = data[0].quote;
+        const author = data[0].author;
+        
+        document.getElementById('q').innerHTML = '"'+quote+'"';
+        document.getElementById('a').innerHTML = ' - '+author;
+    })
+}
+
+inspire();
+
+document.querySelector('button').addEventListener('click',inspire);
+
+</script>
+
+</body>
+</html>
+
