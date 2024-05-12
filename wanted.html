@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +19,6 @@ img{
     left: 50%;
     transform: translate(-50%, -50%);
     height: 40vh;
-    border: 0.5vh solid red;
 }
 
 a{
@@ -40,7 +40,7 @@ a{
 
 <center>
 	<img>
-    <a>INFORMATION</a>
+    <a>LOADING...</a>
 </center>
 
 <script>
@@ -52,10 +52,12 @@ function update() {
 	fetch('https://api.fbi.gov/wanted/v1/list')
 	.then(response => response.json())
     .then(data => {
-    	let total = data['total']
-        let rand = Math.floor(Math.random()*total)
+    	let total = data['total'];
+        let rand = Math.floor(Math.random()*total);
     	img.src = data['items'][rand]['images'][0]['large'];
-        a.href = data['items'][rand]['files'][0]['url']
+        a.href = data['items'][rand]['files'][0]['url'];
+        a.innerHTML = 'INFORMATION';
+        img.style.border = '0.5vh solid red';
         
     })
     .catch(error => {
