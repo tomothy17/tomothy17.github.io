@@ -1,26 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
     <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="pickle.jpeg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>video thing</title>
+    <title>homepage</title>
+    <style>
+
+        .marq {
+            width: 150%;
+            white-space: nowrap;
+            overflow: hidden;
+            position: relative;
+            background-color: rgb(133,176,154);
+            margin: 0;
+            filter: drop-shadow(0vh 1vh 10px rgba(0,0,0,0.5));
+            rotate: 3deg
+        }
+
+        .marq span{
+            display: inline-block;
+            animation: marquee 10s linear infinite;
+            font-size: calc(2vw + 2vh);
+            font-family: monospace;
+            color: white;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(100vw);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        body{
+            margin: 0;
+        }
+
+        .bg{
+            width: 200vw;
+            height: 200vh;
+            background-image: url('pickle.jpeg');
+            background-repeat: repeat;
+            background-size: 100px 100px;
+            animation: bga 1s linear infinite;
+            rotate: 15deg;
+            z-index: -999999999;
+        }
+
+        @keyframes bga {
+            0% {
+                transform: translateX(100px);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -999999999
+        }
+
+        .box {
+            z-index: 1;
+            position: fixed;
+            width: 50vw;
+            height: 50vh;
+
+            left:50%;
+            top:50%;
+            transform: translateX(-50%) translateY(-50%);
+
+            background-color: rgba(133,176,154,0.5);
+            border: 2px dashed white;
+            filter:blur(0.5px);
+            user-select: none;
+            
+        }
+
+        .box a {
+            color: white;
+            text-decoration: none;
+            font-family: monospace;
+            font-size: 17px;
+            position: fixed;
+            margin: 5px
+        }
+
+        .box hr {
+            border: 1px dashed white
+        }
+
+        .box span {
+            color: white;
+            font-family: monospace;
+            font-size: 12px;
+            position: fixed;
+            bottom: 5px;
+            right: 5px
+        }
+
+        .box img {
+            max-width: 70%;
+            max-height: 70%;
+            position: fixed;
+
+            left:50%;
+            top:50%;
+            transform: translateX(-50%) translateY(-50%);
+
+            border: 17px ridge rgb(255,215,0);
+            transform-origin: 0% 0%;
+            animation: imga 1s ease-out infinite
+        }
+
+        @keyframes imga {
+            0%{
+                filter: hue-rotate(0deg);
+                rotate: 0deg;
+            }
+
+            100%{
+                filter: hue-rotate(360deg);
+                rotate: 360deg;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <div id="output">
-        if you can see this, something went wrong
+    
+    <video autoplay muted loop pingpong src="pickle.mov"></video>
+   
+    <div class="box">
+        <a href="https://www.instagram.com/tomothy17/">@tomothy17</a>
+        <br>
+        <hr>
+        <img src="pickle.jpeg">
+        <span>coming soon (maybe)</span>
     </div>
 
-    <!--<label for="speed">Speed</label>
-    <input id="speed" type="range"
-    value="100" min="10" max="1000"
-    oninput="changeSpeed()" step="10">-->
+<script>
 
-    <p id="info">
-        ...
-    </p>
+const vid = document.querySelector('video');
+vid.playbackRate = 1.7
 
-    <script src="script.js"></script>
+</script>
 </body>
 </html>
