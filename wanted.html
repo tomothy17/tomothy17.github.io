@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wanted</title>
+<style>
+
+body{
+	height: 100vh;
+    background: linear-gradient(to bottom, rgb(80,20,20),rgb(0,0,0));
+    overflow: hidden
+}
+
+img{
+	display: block;
+    margin: auto;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 40vh;
+    border: 0.5vh solid red;
+}
+
+a{
+	color: red;
+    font-family: monospace;
+    font-size: 3vh;
+    
+    display: block;
+    margin: auto;
+    position: fixed;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+</style>
+</head>
+<body>
+
+<center>
+	<img>
+    <a>INFORMATION</a>
+</center>
+
+<script>
+
+const img = document.querySelector('img');
+const a = document.querySelector('a');
+
+function update() {
+	fetch('https://api.fbi.gov/wanted/v1/list')
+	.then(response => response.json())
+    .then(data => {
+    	let total = data['total']
+        let rand = Math.floor(Math.random()*total)
+    	img.src = data['items'][rand]['images'][0]['large'];
+        a.href = data['items'][rand]['files'][0]['url']
+        
+    })
+    .catch(error => {
+    	update();
+    });
+}
+
+update();
+
+</script>
+</body>
+</html>
