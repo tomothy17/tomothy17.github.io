@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pseudohack</title>
+<style>
+
+body{
+	background-color: black;
+    color: rgb(0,255,0);
+    font-family: monospace;
+    word-break: break-all;
+}
+
+div{
+	height: 100vh;
+    overflow-y: auto;
+}
+
+</style>
+</head>
+<body>
+
+<div></div>
+
+<script>
+
+const div = document.querySelector('div');
+const abc = 'abcdefghijklmnopqrstuvwxyz';
+
+function rand(arr) {
+	return arr[Math.floor(Math.random()*arr.length)];
+}
+
+const msgs = [
+	'Hacking...',
+    'idk what this does',
+    'i hate javascript'
+]
+
+document.addEventListener('keypress', () => {
+	const lines = [
+      `console.log("${rand(msgs)}");<br><br>`,
+      `let ${rand(abc)};<br>`,
+      `for (let i = 1; i <= ${Math.floor(Math.random()*1000)}; i++) {<br>
+      &nbsp;&nbsp;console.log(i);<br>
+      };<br><br>`,
+      `alert("error");<br><br>`,
+      `document.addEventListener('click',() => {<br>
+      &nbsp;&nbsp;alert("user clicked");<br>
+      });<br><br>`,
+      `const ${rand(abc)} = "${rand(abc).toUpperCase()}";<br>`,
+      `fetch(url)<br>
+      &nbsp;&nbsp;.then(response => response.json())<br>
+      &nbsp;&nbsp;.then(data => alert(data));<br><br>`,
+      `function ${rand(abc)+rand(abc)+rand(abc)+rand(abc)}(x) {<br>
+      &nbsp;&nbsp;return x ${rand(['/','*','**'])} ${rand([2,3])};<br>
+      }<br><br>`,
+      `//${rand(msgs)}<br><br>`
+      
+	]
+
+	let pick = lines[Math.floor(Math.random()*lines.length)];
+	div.innerHTML += pick;
+    
+    div.scrollTop = div.scrollHeight;
+});
+
+</script>
+</body>
+</html>
