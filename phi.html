@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Phi</title>
+<style>
+
+h1{
+	font-family: serif;
+    font-size: 100px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    user-select: none;
+}
+
+*{
+	margin: 0;
+}
+
+</style>
+</head>
+<body>
+
+<h1>&Phi;</h1>
+
+<script>
+
+const phi = document.querySelector('h1');
+const bod = document.body;
+
+let v = true;
+
+function update() {
+	if (v) {
+    	phi.style.color = 'black';
+        bod.style.backgroundColor = 'white';
+    } else {
+    	phi.style.color = 'white';
+        bod.style.backgroundColor = 'black';
+    }
+    v = !v;
+}
+
+setInterval(update,50);
+
+</script>
+</body>
+</html>
